@@ -1,0 +1,22 @@
+{
+  "source_path": "C:\\Users\\User\\OneDrive\\Pictures\\相機膠卷\\2026",
+  "output_path": "D:\\ClaudeProjects\\Album_Reorganize\\output",
+  "photos_path": "D:\\ClaudeProjects\\Album_Reorganize\\photos",
+  "api_config": {
+    "provider": "openai",
+    "api_key": "",
+    "model": "gpt-4-vision-preview"
+  },
+  "categories": {
+    "family": "家庭成員（日常、人物）",
+    "travel": "旅遊（出遊、景點）",
+    "celebration": "節慶聚餐（過節、吃飯、聚會）"
+  },
+  "family_members": ["爸爸", "媽媽", "哥哥", "妹妹"],
+  "password": "0829",
+  "web_config": {
+    "title": "家庭相冊 2026",
+    "mobile_optimized": true,
+    "deployed_url": ""
+  }
+}

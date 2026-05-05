@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='zh-TW'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>家庭相冊 2026</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Noto Serif TC', sans-serif; background: #fafafa; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 40px; text-align: center; }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .activity-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer; }
+        .activity-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+        .activity-card img { width: 100%; height: 200px; object-fit: cover; }
+        .activity-info { padding: 16px; }
+        .activity-info h3 { margin: 0; font-size: 1.2rem; }
+        .activity-info p { margin: 8px 0 0; color: #666; font-size: 0.9rem; }
+        a { color: inherit; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <h1>📸 家庭相冊 2026</h1>
+        <div class='activities-grid'>
+            <!-- 活动卡片将被插入这里 -->
+        </div>
+    </div>
+</body>
+</html>

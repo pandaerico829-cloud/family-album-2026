@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='zh-TW'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>daily life</title>
+    <link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Serif+TC:wght@400;500;600&display=swap' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Serif+TC:wght@400;500;600&display=swap');
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Noto Serif TC', serif; background: #FDF8F5; color: #2f2f2f; }
+        .page-shell { min-height: 100vh; }
+        .hero { position: relative; min-height: 60vh; display: flex; align-items: flex-end; padding: 40px; background-size: cover; background-position: center; }
+        .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
+        .hero-content { position: relative; z-index: 1; color: white; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+        .gallery { column-count: 3; column-gap: 20px; padding: 40px; max-width: 1400px; margin: 0 auto; }
+        .card { break-inside: avoid; margin-bottom: 20px; border-radius: 8px; overflow: hidden; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card img { width: 100%; display: block; }
+        .card-meta { padding: 12px; }
+        .caption { margin: 0; font-size: 0.9rem; color: #666; }
+        .footer { padding: 30px; text-align: center; color: #999; }
+        @media (max-width: 1024px) { .gallery { column-count: 2; } }
+        @media (max-width: 600px) { .gallery { column-count: 1; } }
+    </style>
+</head>
+<body>
+    <div class='page-shell'>
+        <div class='hero' style='background: linear-gradient(135deg, #D4795A 0%, #FDF8F5 100%);'>
+            <div class='hero-content'>
+                <h1>daily life</h1>
+                <p>精选 2 张相片</p>
+            </div>
+        </div>
+        <div class='gallery'>
+            <div class='card'>
+                <img src='photos/20260225_211222000_iOS.jpg' loading='lazy'>
+                <div class='card-meta'>
+                    <p class='caption'>20260225_211222000_iOS</p>
+                </div>
+            </div><div class='card'>
+                <img src='photos/20260228_121925000_iOS.jpg' loading='lazy'>
+                <div class='card-meta'>
+                    <p class='caption'>20260228_121925000_iOS</p>
+                </div>
+            </div>
+        </div>
+        <footer class='footer'>© 2026 Family Album</footer>
+    </div>
+</body>
+</html>
