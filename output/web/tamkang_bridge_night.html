@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淡江大橋夜遊 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; background: #0f1d3d; color: #f7f1dc; font-family: 'Noto Serif TC', serif; }
+        body.locked { overflow: hidden; }
+        a { color: inherit; text-decoration: none; }
+        .page-shell { overflow-x: hidden; }
+        .hero { position: relative; min-height: 72vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 20px; background: linear-gradient(180deg, rgba(26,39,68,0.95), rgba(26,39,68,0.68)), url('photos/20260504_223014000_iOS.jpg') center/cover no-repeat; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: rgba(10,16,34,0.42); }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero h1 { margin: 0; font-family: 'Playfair Display', serif; font-size: clamp(3rem, 4vw, 5.2rem); letter-spacing: 0.04em; color: #f0c040; }
+        .hero p { margin: 20px auto 0; max-width: 700px; color: #f2e7c8; font-size: 1.05rem; line-height: 1.8; }
+        .badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(240,192,64,0.35); background: rgba(255,255,255,0.06); color: #f0c040; font-size: 0.96rem; letter-spacing: 0.06em; }
+        .content { padding: 40px 24px 80px; max-width: 1400px; margin: auto; }
+        .intro { margin-bottom: 32px; color: #d9d4c4; font-size: 1rem; line-height: 1.9; }
+        .masonry { column-count: 3; column-gap: 18px; }
+        .photo-item { break-inside: avoid; margin-bottom: 18px; opacity: 0; transform: translateY(30px); animation: fadeInUp 0.7s forwards; }
+        .photo-card { position: relative; width: 100%; border: none; padding: 0; background: none; cursor: pointer; overflow: hidden; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.32); }
+        .photo-card img { width: 100%; height: auto; display: block; border-radius: 24px; transition: transform 0.5s ease; }
+        .photo-card:hover img { transform: scale(1.04); }
+        .photo-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 18px; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%); color: #fff; font-size: 0.95rem; letter-spacing: 0.02em; }
+        .footer { padding: 32px 20px 60px; text-align: center; color: #9aa4c1; font-size: 0.95rem; }
+        .lightbox, .password-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,16,38,0.95); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .lightbox.active, .password-overlay.active { opacity: 1; pointer-events: auto; }
+        .lightbox-inner { position: relative; max-width: 92vw; max-height: 92vh; width: min(1100px, 100%); }
+        .lightbox-inner img { width: 100%; height: auto; border-radius: 24px; display: block; }
+        .lightbox-close, .nav-button { position: absolute; top: 18px; width: 46px; height: 46px; border: none; border-radius: 50%; background: rgba(0,0,0,0.55); color: #fff; cursor: pointer; font-size: 1.4rem; display: grid; place-items: center; }
+        .lightbox-close { right: 18px; }
+        .nav-button { top: 50%; transform: translateY(-50%); pointer-events: auto; }
+        .nav-prev { left: 18px; }
+        .nav-next { right: 18px; }
+        .password-panel { width: min(420px, calc(100% - 40px)); padding: 34px; border-radius: 28px; background: rgba(14,25,53,0.98); box-shadow: 0 24px 80px rgba(0,0,0,0.4); text-align: center; }
+        .password-panel h2 { margin: 0 0 14px; font-family: 'Playfair Display', serif; font-size: 2.05rem; color: #f0c040; }
+        .password-panel p { margin: 0 0 22px; color: #d9d4c4; line-height: 1.8; }
+        .password-panel input { width: 100%; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(240,192,64,0.28); background: rgba(255,255,255,0.07); color: #fff; font-size: 1rem; outline: none; }
+        .password-panel button { width: 100%; margin-top: 16px; padding: 14px 18px; border: none; border-radius: 14px; background: #f0c040; color: #10254d; font-weight: 700; cursor: pointer; transition: transform 0.2s ease; }
+        .password-panel button:hover { transform: translateY(-1px); }
+        .password-error { margin-top: 12px; min-height: 22px; color: #f6c1a2; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 980px) { .masonry { column-count: 2; } }
+        @media (max-width: 700px) { .hero { min-height: 58vh; padding: 60px 16px; } .masonry { column-count: 1; } .hero h1 { font-size: 2.7rem; } }
+    </style>
+</head>
+<body class="locked">
+    <div class="password-overlay active" id="passwordOverlay">
+        <div class="password-panel">
+            <h2>淡江大橋夜遊 2026</h2>
+            <p>輸入密碼 0829，解鎖這段淡水河畔的夜景回憶。</p>
+            <input id="passwordInput" type="password" placeholder="輸入密碼">
+            <button id="unlockButton">解鎖相冊</button>
+            <div class="password-error" id="passwordError"></div>
+        </div>
+    </div>
+
+    <div class="page-shell">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">淡江大橋夜景專輯</div>
+                <h1>淡江大橋夜遊 2026</h1>
+                <p>收錄深夜金色燈光與家人在淡江大橋前的合照，15-20 張精選影像，配上 Masonry 瀑布流與燈箱放大效果。</p>
+            </div>
+        </section>
+        <main class="content">
+            <div class="intro">這個專輯只選最具氛圍的淡江大橋夜景與橋前合照，從 05 月出遊中挑選 20 張最好的記憶。</div>
+            <div class="masonry">
+                <div class="photo-item" style="animation-delay: 0.05s;"><button class="photo-card" data-src="photos/20260502_103603408_iOS.jpg"><img src="photos/20260502_103603408_iOS.jpg" alt="淡江大橋夜遊 1"><div class="photo-label">淡江大橋夜遊 1</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.10s;"><button class="photo-card" data-src="photos/20260502_104246720_iOS.jpg"><img src="photos/20260502_104246720_iOS.jpg" alt="淡江大橋夜遊 2"><div class="photo-label">淡江大橋夜遊 2</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.15s;"><button class="photo-card" data-src="photos/20260502_104255958_iOS.jpg"><img src="photos/20260502_104255958_iOS.jpg" alt="淡江大橋夜遊 3"><div class="photo-label">淡江大橋夜遊 3</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.20s;"><button class="photo-card" data-src="photos/20260502_104311217_iOS.jpg"><img src="photos/20260502_104311217_iOS.jpg" alt="淡江大橋夜遊 4"><div class="photo-label">淡江大橋夜遊 4</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.25s;"><button class="photo-card" data-src="photos/20260502_104312318_iOS.jpg"><img src="photos/20260502_104312318_iOS.jpg" alt="淡江大橋夜遊 5"><div class="photo-label">淡江大橋夜遊 5</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.30s;"><button class="photo-card" data-src="photos/20260502_104323214_iOS.jpg"><img src="photos/20260502_104323214_iOS.jpg" alt="淡江大橋夜遊 6"><div class="photo-label">淡江大橋夜遊 6</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.35s;"><button class="photo-card" data-src="photos/20260502_104358350_iOS.jpg"><img src="photos/20260502_104358350_iOS.jpg" alt="淡江大橋夜遊 7"><div class="photo-label">淡江大橋夜遊 7</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.40s;"><button class="photo-card" data-src="photos/20260502_111031014_iOS.jpg"><img src="photos/20260502_111031014_iOS.jpg" alt="淡江大橋夜遊 8"><div class="photo-label">淡江大橋夜遊 8</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.45s;"><button class="photo-card" data-src="photos/20260502_111033215_iOS.jpg"><img src="photos/20260502_111033215_iOS.jpg" alt="淡江大橋夜遊 9"><div class="photo-label">淡江大橋夜遊 9</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.50s;"><button class="photo-card" data-src="photos/20260502_111034520_iOS.jpg"><img src="photos/20260502_111034520_iOS.jpg" alt="淡江大橋夜遊 10"><div class="photo-label">淡江大橋夜遊 10</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.55s;"><button class="photo-card" data-src="photos/20260502_113332980_iOS.jpg"><img src="photos/20260502_113332980_iOS.jpg" alt="淡江大橋夜遊 11"><div class="photo-label">淡江大橋夜遊 11</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.60s;"><button class="photo-card" data-src="photos/20260502_113341786_iOS.jpg"><img src="photos/20260502_113341786_iOS.jpg" alt="淡江大橋夜遊 12"><div class="photo-label">淡江大橋夜遊 12</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.65s;"><button class="photo-card" data-src="photos/20260502_113413988_iOS.jpg"><img src="photos/20260502_113413988_iOS.jpg" alt="淡江大橋夜遊 13"><div class="photo-label">淡江大橋夜遊 13</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.70s;"><button class="photo-card" data-src="photos/20260502_113420639_iOS.jpg"><img src="photos/20260502_113420639_iOS.jpg" alt="淡江大橋夜遊 14"><div class="photo-label">淡江大橋夜遊 14</div></button></div>
+                <div class="photo-item" style="animation-delay: 0.75s;"><button class="photo-card" data-src="photos/20260502_113513739_iOS.jpg"><img src="photos/20260502_113513739_iOS.jpg" alt="淡江大橋夜遊 15"><div class="photo-label">淡江大橋夜遊 15</div></button></div>
+            </div>
+        </main>
+        <footer class="footer">© 2026 淡江大橋夜遊相冊</footer>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+            <img id="lightboxImage" src="" alt=""> 
+            <button class="nav-button nav-prev" id="prevBtn" aria-label="Previous">&lsaquo;</button>
+            <button class="nav-button nav-next" id="nextBtn" aria-label="Next">&rsaquo;</button>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = '0829';
+        const overlay = document.getElementById('passwordOverlay');
+        const body = document.body;
+        const input = document.getElementById('passwordInput');
+        const unlockButton = document.getElementById('unlockButton');
+        const errorEl = document.getElementById('passwordError');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeBtn = document.getElementById('lightboxClose');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const galleryButtons = Array.from(document.querySelectorAll('.photo-card'));
+        let currentIndex = 0;
+
+        function unlockAlbum() {
+            if (input.value === PASSWORD) {
+                overlay.classList.remove('active');
+                body.classList.remove('locked');
+                errorEl.textContent = '';
+            } else {
+                errorEl.textContent = '密碼錯誤，請重新輸入。';
+            }
+        }
+
+        unlockButton.addEventListener('click', unlockAlbum);
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') unlockAlbum();
+        });
+
+        galleryButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                currentIndex = index;
+                openLightbox(button.dataset.src);
+            });
+        });
+
+        function openLightbox(src) {
+            lightbox.classList.add('active');
+            lightboxImage.src = src;
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        function showImage(index) {
+            const button = galleryButtons[index];
+            if (!button) return;
+            currentIndex = index;
+            lightboxImage.src = button.dataset.src;
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) closeLightbox();
+        });
+        prevBtn.addEventListener('click', () => showImage((currentIndex - 1 + galleryButtons.length) % galleryButtons.length));
+        nextBtn.addEventListener('click', () => showImage((currentIndex + 1) % galleryButtons.length));
+    </script>
+</body>
+</html>
